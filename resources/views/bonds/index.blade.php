@@ -28,28 +28,20 @@ tfoot { background-color: whitesmoke; }
         </tr>
     </thead>    
     <tbody>    
-        @foreach ($collaboratorsH as $collaborator)
+        @foreach ($collaborators as $collaborator)
             <tr>    
                 <td>{{ $collaborator->collaborator->name }}</td>
+                @if (isset($collaborator->hourly_id))
                 <td> {{ $collaborator->hourly->name }}</td>
                 <td>{{ $collaborator->hourly->tipo }}</td>
                 <td>{{ $collaborator->hourly->horas_mensais }}</td>
                 <td>{{ $collaborator->hourly->contract->enterprise->razao_social }}</td>
-                <td>    
-                    <a href="" class="btn btn-primary">Editar</a>    
-                    <a href="" class="btn btn-danger">Movimentar</a>    
-                </td>    
-            </tr>    
-        @endforeach
-        @foreach ($collaboratorsM as $collaborator)
-            <tr>    
-                <td>{{ $collaborator->collaborator->name }}</td>
-                <td> {{ $collaborator->monthly->name }}</td>
+                @else
+                <td> {{ $collaborator->monthly->name }}</td>   
                 <td>{{ $collaborator->monthly->tipo }}</td>
                 <td>{{ $collaborator->monthly->escala }}</td>
-
                 <td>{{ $collaborator->monthly->contract->enterprise->razao_social }}</td>
-
+                @endif
                 <td>    
                     <a href="" class="btn btn-primary">Editar</a>    
                     <a href="" class="btn btn-danger">Movimentar</a>    
@@ -58,9 +50,9 @@ tfoot { background-color: whitesmoke; }
         @endforeach
     </tbody>    
 </table>   
-
+{{ $collaborators->links() }}
     </div>
-<script>
+<script>/*
 addPagerToTables('#someTable', 20);
 
 function addPagerToTables(tables, rowsPerPage = 10) {

@@ -20,7 +20,8 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->string('status');
-            $table->integer('hora_vinculo');
+            $table->integer('hora_vinculo'); // horas adicionais de algum acordo prévio
+            $table->text('observations')->nullable();
             $table->timestamps();
             $table->softDeletesDateTime();
         });

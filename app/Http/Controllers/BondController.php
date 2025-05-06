@@ -16,9 +16,11 @@ class BondController extends Controller
      */
     public function index()
     {
-        $collaboratorsH = Bond::has('hourly')->whereDoesntHave('works')->get();
-        $collaboratorsM = Bond::has('monthly')->whereDoesntHave('works')->get();
-        return view('bonds.index', compact('collaboratorsH', 'collaboratorsM'));
+        $collaborators = Bond::whereDoesntHave('works')->paginate(20);
+        return view('bonds.index', compact('collaborators'));
+       //$collaboratorsH = Bond::has('hourly')->whereDoesntHave('works')->get();
+       // $collaboratorsM = Bond::has('monthly')->whereDoesntHave('works')->get();
+       // return view('bonds.index', compact('collaboratorsH', 'collaboratorsM'));
     }
 
     /**
