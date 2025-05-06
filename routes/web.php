@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function () {
 Route::resource('collaborators', App\Http\Controllers\CollaboratorController::class);
 Route::resource('bonds', App\Http\Controllers\BondController::class);
 Route::resource('works', App\Http\Controllers\WorkController::class);
+Route::resource('health_units', App\Http\Controllers\HealthUnitController::class);
 
 
 require __DIR__.'/auth.php';

@@ -20,7 +20,7 @@ class WorkFactory extends Factory
     public function definition(): array
     {
 
-        $bond = Bond::has('hourly')->whereDoesntHave('works')->get()->random();
+        $bond = Bond::whereDoesntHave('works')->get()->random();
         $sector = Sector::all()->random();
         $applicant = Applicant::all()->random();
         return [

@@ -10,7 +10,7 @@ tfoot { background-color: whitesmoke; }
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900 dark:text-gray-100">
-            <h1>Lista de colaboradores com vínculo nas unidades</h1>
+            <h1>Lista de Unidades de Saúde - <a href="/health_units/create" class="btn btn-primary">Incluir</a></h1>
         </div>
         </div>
     </div>
@@ -18,32 +18,21 @@ tfoot { background-color: whitesmoke; }
     <thead>    
         <tr>    
             <th scope="col">Nome</th>
-            <th scope="col">Função</th>    
+            <th scope="col">Nome Fantasia</th>    
+            <th scope="col">CNES</th>
+            <th scope="col">CNPJ</th>
             <th scope="col">Tipo</th>
-            <th scope="col">Horas/Escala</th>
-            <th scope="col">Empresa</th>
-            <th scope="col">Unidade</th>
-            <th scope="col">Setor</th>
             <th scope="col">Ações</th>
         </tr>
     </thead>    
     <tbody>    
-        @foreach ($collaborators as $collaborator)
+        @foreach ($unidades as $unidade)
             <tr>    
-                <td>{{ $collaborator->bond->collaborator->name }}</td>
-                @if (isset($collaborator->bond->hourly_id))
-                <td> {{ $collaborator->bond->hourly->name }}</td>
-                <td>{{ $collaborator->bond->hourly->tipo }}</td>
-                <td>{{ $collaborator->bond->hourly->horas_mensais }}</td>
-                <td>{{ $collaborator->bond->hourly->contract->enterprise->razao_social }}</td>
-                @else
-                <td> {{ $collaborator->bond->monthly->name }}</td>
-                <td>{{ $collaborator->bond->monthly->tipo }}</td>
-                <td>{{ $collaborator->bond->monthly->escala }}</td>
-                <td>{{ $collaborator->bond->monthly->contract->enterprise->razao_social }}</td>
-                @endif
-                <td>{{ $collaborator->sector->healthUnit->name }}</td>
-                <td>{{ $collaborator->sector->name }}</td>
+                <td>{{ $unidade->name }}</td>
+                <td> {{ $unidade->fantasia  }}</td>
+                <td>{{ $unidade->cnes }}</td>
+                <td>{{ $unidade->cnpj }}</td>
+                <td>{{ $unidade->type }}</td>
                 <td>    
                     <a href="" class="btn btn-primary">Editar</a>    
                     <a href="" class="btn btn-danger">Movimentar</a>    
@@ -52,7 +41,7 @@ tfoot { background-color: whitesmoke; }
         @endforeach
     </tbody>    
 </table>   
-{{ $collaborators->links() }}
+{{ $unidades->links() }}
     </div>
 <script>/*
 addPagerToTables('#someTable', 20);

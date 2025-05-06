@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
-use App\Models\Work;
+use App\Models\HealthUnit;
+use App\Http\Requests\StoreUpdateHealthUnitRequest;
 
-class WorkController extends Controller
+class HealthUnitController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $collaborators = Work::paginate(20);
-        return view('works.index', compact('collaborators'));
+        $unidades = HealthUnit::paginate(20);
+        return view('health_units.index', compact('unidades'));
 
     }
 
@@ -23,15 +23,16 @@ class WorkController extends Controller
      */
     public function create()
     {
-        //
+        return view('health_units.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUpdateHealthUnitRequest $request)
     {
-        //
+        HealthUnit::create($request->validated());
+        return redirect()->route('health_units.index')->with('success', 'Unidade cadastrada com sucesso!');
     }
 
     /**
