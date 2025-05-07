@@ -21,6 +21,8 @@ Route::resource('collaborators', App\Http\Controllers\CollaboratorController::cl
 Route::resource('bonds', App\Http\Controllers\BondController::class);
 Route::resource('works', App\Http\Controllers\WorkController::class);
 Route::resource('health_units', App\Http\Controllers\HealthUnitController::class);
+Route::resource('enterprises', App\Http\Controllers\EnterpriseController::class);
+Route::resource('sectors', App\Http\Controllers\SectorController::class);
 
 
 require __DIR__.'/auth.php';
