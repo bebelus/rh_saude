@@ -10,40 +10,33 @@ tfoot { background-color: whitesmoke; }
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900 dark:text-gray-100">
-            <h1>Lista de colaboradores com vínculo </h1>
-            <p><h2><a href="{{ route('works.index') }}" class="btn btn-primary">Lista de colaboradores com vínculo e atuando nas unidades</a></h2></p>
-
+            <h1>Lista de Objetos dos Contratos - (Mensalistas)<a href="/monthlies/create" class="btn btn-primary">Incluir</a></h1>
         </div>
         </div>
     </div>
 <table id="someTable">
     <thead>    
         <tr>    
-            <th scope="col">Nome</th>
-            <th scope="col">Data Início</th>
-            <th scope="col">Função</th>    
+            <th scope="col">Número Contrato</th>
+            <th scope="col">Empresa</th>  
+            <th scope="col">Função</th>
             <th scope="col">Tipo</th>
-            <th scope="col">Horas/Escala</th>
-            <th scope="col">Empresa</th>
-            <th scope="col">Ações</th>
+            <th scope="col">Escala</th>  
+            <th scope="col">Salário Base</th>
+            <th scope="col">Custo</th>
+            <th scope="col">Ações</th>
         </tr>
     </thead>    
     <tbody>    
-        @foreach ($collaborators as $collaborator)
+        @foreach ($monthlies as $monthly)
             <tr>    
-                <td>{{ $collaborator->collaborator->name }}</td>
-                <td>{{ $collaborator->start_date->format('d/m/Y') }}</td>
-                @if (isset($collaborator->hourly_id))
-                <td> {{ $collaborator->hourly->name }}</td>
-                <td>{{ $collaborator->hourly->tipo }}</td>
-                <td>{{ $collaborator->hourly->horas_mensais }}</td>
-                <td>{{ $collaborator->hourly->contract->enterprise->razao_social }}</td>
-                @else
-                <td> {{ $collaborator->monthly->name }}</td>   
-                <td>{{ $collaborator->monthly->tipo }}</td>
-                <td>{{ $collaborator->monthly->escala }}</td>
-                <td>{{ $collaborator->monthly->contract->enterprise->razao_social }}</td>
-                @endif
+                <td><!--{{ $monthly->contract->contract_number }} --></td>
+                <td> {{ $monthly->contract->enterprise->fantasia  }} </td>
+                <td>{{ $monthly->name }}</td>
+                <td>{{ $monthly->tipo }}</td>
+                <td>{{ $monthly->escala }}</td>
+                <td>{{ $monthly->formattedSalario }}</td>
+                <td>{{ $monthly->formattedCusto }}</td>
                 <td>    
                     <a href="" class="btn btn-primary">Editar</a>    
                     <a href="" class="btn btn-danger">Movimentar</a>    
@@ -52,7 +45,7 @@ tfoot { background-color: whitesmoke; }
         @endforeach
     </tbody>    
 </table>   
-{{ $collaborators->links() }}
+{{ $monthlies->links() }}
     </div>
 <script>/*
 addPagerToTables('#someTable', 20);

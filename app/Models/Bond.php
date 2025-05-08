@@ -52,4 +52,13 @@ class Bond extends Model
         return $this->belongsTo(Applicant::class);
     }
 
+    protected function casts(): array
+    {
+        return [
+            'start_date' => 'date:m/d/Y',
+            'end_date' => 'date:m/d/Y',
+        ];
+    }
+
+
 }

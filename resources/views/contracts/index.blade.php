@@ -1,3 +1,4 @@
+
 <head>
     <style type="text/css">
 table { border: 1px solid black; border-collapse: collapse }
@@ -10,40 +11,35 @@ tfoot { background-color: whitesmoke; }
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900 dark:text-gray-100">
-            <h1>Lista de colaboradores com vínculo </h1>
-            <p><h2><a href="{{ route('works.index') }}" class="btn btn-primary">Lista de colaboradores com vínculo e atuando nas unidades</a></h2></p>
-
+            <h1>Lista de Contratos das Empresas - <a href="/contracts/create" class="btn btn-primary">Incluir</a></h1>
         </div>
         </div>
     </div>
 <table id="someTable">
     <thead>    
         <tr>    
-            <th scope="col">Nome</th>
-            <th scope="col">Data Início</th>
-            <th scope="col">Função</th>    
-            <th scope="col">Tipo</th>
-            <th scope="col">Horas/Escala</th>
-            <th scope="col">Empresa</th>
-            <th scope="col">Ações</th>
+            <th scope="col">Número</th>
+            <th scope="col">Descrição</th>  
+            <th scope="col">Valor Total</th>
+            <th scope="col">Teto Mensal</th>
+            <th scope="col">Data Inicial</th>  
+            <th scope="col">Data Final</th>
+            <th scope="col">Empresa Pertecente</th>
+            <th scope="col">Status</th>
+            <th scope="col">Ações</th>
         </tr>
     </thead>    
     <tbody>    
-        @foreach ($collaborators as $collaborator)
+        @foreach ($contracts as $contract)
             <tr>    
-                <td>{{ $collaborator->collaborator->name }}</td>
-                <td>{{ $collaborator->start_date->format('d/m/Y') }}</td>
-                @if (isset($collaborator->hourly_id))
-                <td> {{ $collaborator->hourly->name }}</td>
-                <td>{{ $collaborator->hourly->tipo }}</td>
-                <td>{{ $collaborator->hourly->horas_mensais }}</td>
-                <td>{{ $collaborator->hourly->contract->enterprise->razao_social }}</td>
-                @else
-                <td> {{ $collaborator->monthly->name }}</td>   
-                <td>{{ $collaborator->monthly->tipo }}</td>
-                <td>{{ $collaborator->monthly->escala }}</td>
-                <td>{{ $collaborator->monthly->contract->enterprise->razao_social }}</td>
-                @endif
+                <td><!--{{ $contract->contract_number }} --></td>
+                <td><!-- {{ $contract->description  }} --></td>
+                <td>{{$contract->formattedTotalValue }} </td>
+                <td>{{ $contract->formattedTetoMensal }}</td>
+                <td>{{ $contract->formattedStartDate }}</td>
+                <td>{{ $contract->formattedEndDate }}</td>
+                <td>{{ $contract->enterprise->razao_social }}</td>
+                <td>{{ $contract->status }}</td>
                 <td>    
                     <a href="" class="btn btn-primary">Editar</a>    
                     <a href="" class="btn btn-danger">Movimentar</a>    
@@ -52,7 +48,7 @@ tfoot { background-color: whitesmoke; }
         @endforeach
     </tbody>    
 </table>   
-{{ $collaborators->links() }}
+{{ $contracts->links() }}
     </div>
 <script>/*
 addPagerToTables('#someTable', 20);

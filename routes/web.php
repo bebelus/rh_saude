@@ -23,6 +23,8 @@ Route::resource('works', App\Http\Controllers\WorkController::class);
 Route::resource('health_units', App\Http\Controllers\HealthUnitController::class);
 Route::resource('enterprises', App\Http\Controllers\EnterpriseController::class);
 Route::resource('sectors', App\Http\Controllers\SectorController::class);
-
+Route::resource('contracts', App\Http\Controllers\ContractController::class);
+Route::resource('hourlies', App\Http\Controllers\HourlyController::class);
+Route::resource('monthlies', App\Http\Controllers\MonthlyController::class);
 
 require __DIR__.'/auth.php';

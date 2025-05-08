@@ -17,7 +17,7 @@ class MonthlyFactory extends Factory
      */
     public function definition(): array
     {
-        $contract = Contract::where('status', '=','RECONHECIMENTO_DE_DIVIDA')->get()->random();
+        $contract = Contract::where('status', '=','Vencido')->get()->random();
 
         return [
             'id' => fake()->uuid(),

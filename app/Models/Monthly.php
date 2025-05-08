@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Contract;
+use App\Models\Bond;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
 
 
 class Monthly extends Model
@@ -33,6 +36,16 @@ class Monthly extends Model
     public function bonds(): HasMany
     {
         return $this->hasMany(Bond::class);
+    }
+
+    protected function formattedSalario(): Attribute
+    {
+        return Attribute::get(fn () => 'R$ ' . number_format($this->salario_base, 2, ',', '.'));
+    }     
+
+    protected function formattedCusto(): Attribute
+    {
+        return Attribute::get(fn () => 'R$ ' . number_format($this->custo, 2, ',', '.'));
     }
 
 }

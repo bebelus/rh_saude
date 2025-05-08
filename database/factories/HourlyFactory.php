@@ -18,7 +18,7 @@ class HourlyFactory extends Factory
     public function definition(): array
 
     {
-        $contract = Contract::where('status', '=','ATIVO')->get()->random();
+        $contract = Contract::where('status', '=','Vigente')->get()->random();
 
         return [
             'id' => fake()->uuid(),

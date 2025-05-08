@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
+
 
 
 class Collaborator extends Model
@@ -36,6 +39,13 @@ class Collaborator extends Model
     public function bonds(): HasMany
     {
         return $this->hasMany(Bond::class);
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'birth' => 'date:m/d/Y',
+        ];
     }
 
 

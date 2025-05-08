@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Hourly;
 use App\Models\Monthly;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Contract extends Model
 {
@@ -17,6 +18,8 @@ class Contract extends Model
 
     protected $fillable = [
         'enterprise_id',
+        'contract_number',
+        'description',
         'total_value',
         'start_date',
         'end_date',
@@ -39,5 +42,23 @@ class Contract extends Model
     {
         return $this->hasMany(Monthly::class);
     }
+    protected function formattedTotalValue(): Attribute
+    {
+        return Attribute::get(fn () => 'R$ ' . number_format($this->total_value, 2, ',', '.'));
+    }     
+    protected function formattedTetoMensal(): Attribute
+    {
+        return Attribute::get(fn () => 'R$ ' . number_format($this->teto_mensal, 2, ',', '.'));
+    }     
+
+    protected function formattedStartDate(): Attribute{
+        return Attribute::get(fn () => date('d/m/Y', strtotime($this->start_date)));
+    }
+
+    protected function formattedEndDate(): Attribute{
+        return Attribute::get(fn () => date('d/m/Y', strtotime($this->end_date)));
+    }
+
+
 
 }

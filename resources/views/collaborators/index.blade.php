@@ -13,6 +13,7 @@
     <thead>    
         <tr>    
             <th scope="col">Nome</th>
+            <th scope="col">Nascimento</th>
             <th scope="col">Email</th>    
             <th scope="col">Ações</th>
         </tr>
@@ -21,6 +22,7 @@
         @foreach ($collaborators as $collaborator)
             <tr>    
                 <td>{{ $collaborator->name }}</td>
+                <td>{{ $collaborator->birth->format('d/m/Y') }}</td>
                 <td>{{ $collaborator->email }}</td>    
                 <td>    
                     <a href="" class="btn btn-primary">Editar</a>    

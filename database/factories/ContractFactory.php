@@ -21,11 +21,13 @@ class ContractFactory extends Factory
         return [
             'id' => fake()->uuid(),
             'enterprise_id' => $enterprise->id,
+            'contract_number' => fake()->numerify('##########'),
+            'description' => fake()->sentence(),
             'total_value' => fake()->numerify('########.##'),
             'start_date' => fake()->date(),
             'end_date' => fake()->date(),
             'teto_mensal' => fake()->numerify('########.##'),
-            'status' => fake()->randomElement(['ATIVO', 'INATIVO', 'RECONHECIMENTO_DE_DIVIDA']),];
+            'status' => fake()->randomElement(['Vigente', 'Vencido', 'Inativo' ]),];
     }
 
     
