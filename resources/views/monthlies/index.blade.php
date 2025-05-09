@@ -30,7 +30,7 @@ tfoot { background-color: whitesmoke; }
     <tbody>    
         @foreach ($monthlies as $monthly)
             <tr>    
-                <td><!--{{ $monthly->contract->contract_number }} --></td>
+                <td>{{ $monthly->contract->contract_number }} </td>
                 <td> {{ $monthly->contract->enterprise->fantasia  }} </td>
                 <td>{{ $monthly->name }}</td>
                 <td>{{ $monthly->tipo }}</td>

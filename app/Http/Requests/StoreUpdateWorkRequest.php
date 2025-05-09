@@ -2,11 +2,12 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Enterprise;
-
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Bond;
+use App\Models\Sector;
+use App\Models\Applicant;
 
-class StoreUpdateContractRequest extends FormRequest
+class StoreUpdateWorkRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +25,12 @@ class StoreUpdateContractRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'contract_number' => ['required', 'string', 'max:255'],
-            'enterprise_id' => ['required', 'exists:'.Enterprise::class.',id'],
-            'total_value' => ['required', 'numeric'],
+            'bond_id' => ['required', 'exists:'.Bond::class.',id'],
+            'sector_id' => ['required', 'exists:'.Sector::class.',id'],
+            'applicant_id' => ['required', 'exists:'.Applicant::class.',id'],
             'start_date' => ['required', 'date'],
-            'end_date' => ['nullable', 'date'],
-            'teto_mensal' => ['required', 'numeric'],
+            'end_date' => [ 'date'],
             'status' => ['required', 'string'],
-            'description' => ['required', 'string' ],
-
         ];
     }
 }

@@ -22,6 +22,7 @@ class Bond extends Model
         'collaborator_id',
         'hourly_id',
         'monthly_id',
+        'applicant_id',
         'start_date',
         'end_date',
         'status',

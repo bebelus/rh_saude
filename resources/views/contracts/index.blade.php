@@ -32,8 +32,8 @@ tfoot { background-color: whitesmoke; }
     <tbody>    
         @foreach ($contracts as $contract)
             <tr>    
-                <td><!--{{ $contract->contract_number }} --></td>
-                <td><!-- {{ $contract->description  }} --></td>
+                <td>{{ $contract->contract_number }} </td>
+                <td> {{ $contract->description  }} </td>
                 <td>{{$contract->formattedTotalValue }} </td>
                 <td>{{ $contract->formattedTetoMensal }}</td>
                 <td>{{ $contract->formattedStartDate }}</td>

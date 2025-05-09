@@ -13,6 +13,6 @@ class SectorSeeder extends Seeder
      */
     public function run(): void
     {
-        Sector::factory(150)->create();
+        Sector::factory(50)->create();
     }
 }

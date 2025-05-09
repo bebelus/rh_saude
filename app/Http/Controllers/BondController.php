@@ -8,6 +8,7 @@ use App\Models\Collaborator;
 use App\Models\Applicant;
 use App\Models\Hourly;
 use App\Models\Monthly;
+use App\Http\Requests\StoreUpdateBondRequest;
 
 class BondController extends Controller
 {
@@ -28,15 +29,21 @@ class BondController extends Controller
      */
     public function create()
     {
-        //
+        $null = NULL;
+        $collaborators = Collaborator::whereDoesntHave('bonds')->get();
+        $applicants = Applicant::all();
+        $hourlies = Hourly::all();
+        $monthlies = Monthly::all();
+        return view('bonds.create', compact('collaborators', 'applicants', 'hourlies', 'monthlies', 'null'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUpdateBondRequest $request)
     {
-        //
+        Bond::create($request->validated());
+        return redirect()->route('bonds.index')->with('success', 'Vínculo cadastrado com sucesso!');
     }
 
     /**

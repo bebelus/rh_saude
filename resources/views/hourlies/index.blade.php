@@ -31,7 +31,7 @@ tfoot { background-color: whitesmoke; }
     <tbody>    
         @foreach ($hourlies as $hourly)
             <tr>    
-                <td><!--{{ $hourly->contract->contract_number }} --></td>
+                <td>{{ $hourly->contract->contract_number }} </td>
                 <td> {{ $hourly->contract->enterprise->fantasia  }} </td>
                 <td>{{ $hourly->name }}</td>
                 <td>{{ $hourly->tipo }}</td>

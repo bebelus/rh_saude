@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Sector;
 use App\Models\Bond;
+use App\Models\Applicant;
 
 
 class Work extends Model
@@ -18,6 +19,7 @@ class Work extends Model
     protected $fillable = [
         'bond_id',
         'sector_id',
+        'applicant_id',
         'start_date',
         'end_date',
         'status',
@@ -31,6 +33,10 @@ class Work extends Model
     public function sector(): BelongsTo
     {
         return $this->belongsTo(Sector::class);
+    }
+    public function applicant(): BelongsTo
+    {
+        return $this->belongsTo(Applicant::class);
     }
     
 }

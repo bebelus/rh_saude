@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\HealthUnit;
+use App\Models\Sector;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Sector>
@@ -17,7 +18,7 @@ class SectorFactory extends Factory
      */
     public function definition(): array
     {
-        $healthUnit = HealthUnit::all()->random();
+        $healthUnit = HealthUnit::whereDoesntHave('sectors')->get()->random();
         switch ($healthUnit->type) {
             case 'HOSPITAL':
                 $type = fake()->randomElement(['24h', '12h']);

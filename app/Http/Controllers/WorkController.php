@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Work;
+use App\Models\Bond;
+use App\Models\Sector;
+use App\Http\Requests\StoreUpdateWorkRequest;
+use App\Models\Applicant;
 
 class WorkController extends Controller
 {
@@ -23,15 +27,20 @@ class WorkController extends Controller
      */
     public function create()
     {
-        //
+        $bonds = Bond::whereDoesntHave('works')->get();
+        $sectors = Sector::all()->sortBy('HealthUnit.name');
+        $applicants = Applicant::all();
+        return view('works.create', compact('bonds', 'sectors', 'applicants'));
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUpdateWorkRequest $request)
     {
-        //
+        Work::create($request->validated());
+        return redirect()->route('works.index')->with('success', 'Trabalho cadastrado com sucesso!');
     }
 
     /**

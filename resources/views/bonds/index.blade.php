@@ -10,7 +10,7 @@ tfoot { background-color: whitesmoke; }
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 text-gray-900 dark:text-gray-100">
-            <h1>Lista de colaboradores com vínculo </h1>
+            <h1>Lista de colaboradores com vínculo  - <a href="/bonds/create" class="btn btn-primary">Incluir</a></h1>
             <p><h2><a href="{{ route('works.index') }}" class="btn btn-primary">Lista de colaboradores com vínculo e atuando nas unidades</a></h2></p>
 
         </div>

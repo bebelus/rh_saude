@@ -32,11 +32,11 @@
         <option value="COORDENAÇÃO"@if(old('tipo') == 'COORDENAÇÃO') selected @endif>COORDENAÇÃO</option >
         <option value="OUTROS"@if(old('tipo') == 'OUTROS') selected @endif>OUTROS</option >
     </select><br />
-    <label for="horas_totais">Horas Totais</label> <input type="number" name="horas_totais" value=" {{ old('horas_totais') }}"><br />
-    <label for="horas_mensais">Horas Mensais</label> <input type="number" name="horas_mensais" value=" {{ old('horas_mensais') }}"><br />
-    <label for="salario_hora">Salário Hora</label> <input type="number" name="salario_hora" value=" {{ old('salario_hora') }}"><br />
-    <label for="custo_hora">Custo Hora</label> <input type="number" name="custo_hora" value=" {{ old('custo_hora') }}"><br />
-    <label for="horas_usadas">Horas Usadas</label> <input type="number" name="horas_usadas" value=" {{ old('horas_usadas') }}"><br />
+    <label for="horas_totais">Horas Totais</label> <input type="text" name="horas_totais" value=" {{ old('horas_totais') }}"><br />
+    <label for="horas_mensais">Horas Mensais</label> <input type="text" name="horas_mensais" value=" {{ old('horas_mensais') }}"><br />
+    <label for="salario_hora">Salário Hora</label> <input type="text" name="salario_hora" value=" {{ old('salario_hora') }}"><br />
+    <label for="custo_hora">Custo Hora</label> <input type="text" name="custo_hora" value=" {{ old('custo_hora') }}"><br />
+    <label for="horas_usadas">Horas Usadas</label> <input type="text" name="horas_usadas" value=" {{ old('horas_usadas') }}"><br />
     <button type="submit">Salvar</button>
     </div>
 </form>

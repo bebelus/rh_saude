@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Enterprise;
+use App\Models\Contract;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Contract>
@@ -17,7 +18,7 @@ class ContractFactory extends Factory
      */
     public function definition(): array
     {
-        $enterprise = Enterprise::all()->random();
+        $enterprise = Enterprise::whereDoesntHave('contracts')->get()->random();
         return [
             'id' => fake()->uuid(),
             'enterprise_id' => $enterprise->id,

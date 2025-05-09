@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Contract;
+use App\Models\Monthly;
 
 class StoreUpdateMonthlyRequest extends FormRequest
 {

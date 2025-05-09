@@ -13,6 +13,6 @@ class BondSeeder extends Seeder
      */
     public function run(): void
     {
-        Bond::factory(10)->create();
+        Bond::factory(50)->create();
     }
 }
