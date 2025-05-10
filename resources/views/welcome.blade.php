@@ -9,6 +9,67 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+        <style>
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+</style>
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+</script>
 
         <!-- Styles / Scripts -->
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
@@ -31,9 +92,28 @@
                             Dashboard
                         </a>
                     @else
+                    <div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Meu Projeto</button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="{{route('collaborators.index')}}">Colaboradores</a>
+    <a href="{{route('health_units.index')}}">Unidades de Saude</a>
+    <a href="{{route('sectors.index')}}">Setores de Unidades</a>
+    <a href="{{route('enterprises.index')}}">Empresas</a>
+    <a href="{{route('contracts.index')}}">Contratos de empresas</a>
+    <a href="{{route('hourlies.index')}}">Funções dos contratos do tipo Horista</a>
+    <a href="{{route('monthlies.index')}}">Funções dos contratos do tipo Mensalista</a>
+    <a href="{{route('bonds.index')}}">Vincular Colaboradores com uma empresa</a>
+    <a href="{{route('works.index')}}">Vincular um colaborador já empregado em uma Unidade</a>
+
+
+  </div>
+</div>
+                            
                         <a
                             href="{{ route('login') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal"
+                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] 
+                            text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] 
+                            rounded-sm text-sm leading-normal"
                         >
                             Log in
                         </a>
@@ -41,7 +121,9 @@
                         @if (Route::has('register'))
                             <a
                                 href="{{ route('register') }}"
-                                class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
+                                class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] 
+                                hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] 
+                                dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
                                 Register
                             </a>
                         @endif
