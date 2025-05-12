@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreUpdateEnterpriseRequest;
 use App\Models\Enterprise;
 
+
 class EnterpriseController extends Controller
 {
     /**
@@ -13,7 +14,7 @@ class EnterpriseController extends Controller
      */
     public function index()
     {
-        $enterprises = Enterprise::paginate(20);
+        $enterprises = Enterprise::paginate(15);
         return view('enterprises.index', compact('enterprises'));
     }
 
@@ -39,7 +40,8 @@ class EnterpriseController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $enterprise = Enterprise::where('id','=', $id)->first();
+        return view('enterprises.show', compact('enterprise'));
     }
 
     /**
@@ -47,15 +49,17 @@ class EnterpriseController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $enterprise = Enterprise::where('id','=', $id)->first();
+        return view('enterprises.edit', compact('enterprise'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreUpdateEnterpriseRequest $request, Enterprise $enterprise)
     {
-        //
+        $enterprise->update($request->validated());
+        return redirect()->route('enterprises.index')->with('success', 'Empresa atualizada com sucesso!');
     }
 
     /**

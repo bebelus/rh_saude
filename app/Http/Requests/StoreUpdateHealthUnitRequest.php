@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\HealthUnit;
+use Illuminate\Validation\Rule;
 
 class StoreUpdateHealthUnitRequest extends FormRequest
 {
@@ -23,10 +24,10 @@ class StoreUpdateHealthUnitRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255', 'unique:'.HealthUnit::class],
-            'cnes' => ['required', 'string', 'max:255', 'unique:'.HealthUnit::class],
-            'cnpj' => ['required', 'string', 'max:255', 'unique:'.HealthUnit::class],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.HealthUnit::class],
+            'name' => ['required', 'string', 'max:255', Rule::unique(HealthUnit::class)->ignore($this->health_unit)],
+            'cnes' => ['required', 'string', 'max:255', Rule::unique(HealthUnit::class)->ignore($this->health_unit)],
+            'cnpj' => ['required', 'string', 'max:255', Rule::unique(HealthUnit::class)->ignore($this->health_unit)],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(HealthUnit::class)->ignore($this->health_unit)],
             'phone' => ['required', 'string', 'max:255'],
             'cellphone' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],

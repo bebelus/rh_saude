@@ -34,7 +34,7 @@ tfoot { background-color: whitesmoke; }
                 <td>{{ $unidade->cnpj }}</td>
                 <td>{{ $unidade->type }}</td>
                 <td>    
-                    <a href="" class="btn btn-primary">Editar</a>    
+                    <a href="health_units/{{ $unidade->id }}" class="btn btn-primary">Detalhes</a>    
                     <a href="" class="btn btn-danger">Movimentar</a>    
                 </td>    
             </tr>    

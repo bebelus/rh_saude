@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\Collaborator;
-
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUpdateCollaboratorRequest extends FormRequest
@@ -25,8 +25,8 @@ class StoreUpdateCollaboratorRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string',  'max:255'],
-            'email' => ['required', 'string',  'max:255','email', 'unique:'.Collaborator::class],
-            'cpf' => ['required', 'string', 'max:255','unique:'.Collaborator::class],
+            'email' => ['required', 'string',  'max:255','email', Rule::unique(Collaborator::class)->ignore($this->collaborator)],
+            'cpf' => ['required', 'string', 'max:255',Rule::unique(Collaborator::class)->ignore($this->collaborator)],
             'rg' => [ 'string', 'max:30'],
             'birth' => [ 'string' ],
             'sex' => [ 'required', 'string', 'min: 1', 'max:1'],
@@ -38,7 +38,6 @@ class StoreUpdateCollaboratorRequest extends FormRequest
             'city' => [ 'string',  'max:30'],
             'state' => [ 'string', 'min: 2', 'max:2'],
             'cep' => [ 'string',  'max:15'],
-            'applicant' => [ 'boolean'],
 
         ];
     }

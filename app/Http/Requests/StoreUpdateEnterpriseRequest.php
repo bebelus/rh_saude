@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Enterprise;
+use Illuminate\Validation\Rule;
 
 class StoreUpdateEnterpriseRequest extends FormRequest
 {
@@ -23,9 +24,9 @@ class StoreUpdateEnterpriseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'razao_social' => ['required', 'string', 'max:255', 'unique:'.Enterprise::class],
-            'cnpj' => ['required', 'string', 'max:255', 'unique:'.Enterprise::class],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.Enterprise::class],
+            'razao_social' => ['required', 'string', 'max:255', Rule::unique(Enterprise::class)->ignore($this->enterprise)],
+            'cnpj' => ['required', 'string', 'max:255',Rule::unique(Enterprise::class)->ignore($this->enterprise)],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255',Rule::unique(Enterprise::class)->ignore($this->enterprise)],
             'phone' => ['required', 'string', 'max:255'],
             'cellphone' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],

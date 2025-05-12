@@ -34,7 +34,7 @@ tfoot { background-color: whitesmoke; }
                 <td>{{ $enterprise->phone }}</td>
                 <td>{{ $enterprise->email }}</td>
                 <td>    
-                    <a href="" class="btn btn-primary">Editar</a>    
+                    <a href="enterprises/{{ $enterprise->id }}" class="btn btn-primary">Detalhes</a>    
                     <a href="" class="btn btn-danger">Movimentar</a>    
                 </td>    
             </tr>    

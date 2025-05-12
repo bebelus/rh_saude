@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\HealthUnit;
+use App\Models\Sector;
+use Illuminate\Validation\Rule;
 
 
 class StoreUpdateSectorRequest extends FormRequest
@@ -26,7 +28,7 @@ class StoreUpdateSectorRequest extends FormRequest
                 // validar se é uma unidade de saude e se o tipo comporta o tipo do setor
 
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', Rule::unique(Sector::class)->ignore($this->sector->healhUnit)],
             'description' => ['required', 'string', 'max:255'],
             'health_unit_id' => ['required', 'exists:'.HealthUnit::class.',id'],
             'type' => ['required', 'string', 'max:255'],

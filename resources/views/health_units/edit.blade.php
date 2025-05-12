@@ -1,4 +1,4 @@
-<h1>Nova Unidade de Saúde</h1>
+<h1>Editando a Unidade de Saúde {{ $health_unit->name }}</h1>
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -8,7 +8,8 @@
         </ul>
     </div>
 @endif
-<form action="{{ route('health_units.store') }}" method="POST">
+<form action="{{ route('health_units.update', $health_unit) }}" method="POST">
     @csrf
+    @method('PUT')
     @include('health_units.form')
 </form>

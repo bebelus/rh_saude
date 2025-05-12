@@ -1,4 +1,4 @@
-<h1>Nova Unidade de Saúde</h1>
+<h1>Editar Colaborador {{ $collaborator->name }}</h1>
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -8,7 +8,9 @@
         </ul>
     </div>
 @endif
-<form action="{{ route('health_units.store') }}" method="POST">
+<form action="{{ route('collaborators.update', $collaborator) }}" method="POST">
     @csrf
-    @include('health_units.form')
+    @method('PUT')
+    @include('collaborators.form')
+
 </form>

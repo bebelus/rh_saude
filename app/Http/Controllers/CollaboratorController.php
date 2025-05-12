@@ -41,25 +41,29 @@ class CollaboratorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Collaborator $collaborator)
+    public function show(string $collab)
     {
-        //
+        $collaborator = Collaborator::where('id','=', $collab)->first();
+        return view('collaborators.show', compact('collaborator'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Collaborator $collaborator)
+    public function edit(string $collab)
     {
-        //
+        $collaborator = Collaborator::where('id', $collab)->first();
+        return view('collaborators.edit', compact('collaborator'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Collaborator $collaborator)
+    public function update(StoreUpdateCollaboratorRequest $request, Collaborator $collaborator)
     {
-        //
+       $collaborator->update($request->validated());
+        return redirect()->route('collaborators.index')->with('success', 'Colaborador atualizado com sucesso!');
     }
 
     /**

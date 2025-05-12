@@ -24,8 +24,8 @@
                 <td>{{ $collaborator->name }}</td>
                 <td>{{ $collaborator->birth->format('d/m/Y') }}</td>
                 <td>{{ $collaborator->email }}</td>    
-                <td>    
-                    <a href="" class="btn btn-primary">Editar</a>    
+                <td>     
+                    <a href="collaborators/{{ $collaborator->id }}" class="btn btn-primary">Detalhes</a>    
                     <a href="" class="btn btn-danger">Movimentar</a>    
                 </td>    
             </tr>    

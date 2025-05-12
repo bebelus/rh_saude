@@ -40,7 +40,8 @@ class HealthUnitController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $health_unit = HealthUnit::where('id', $id)->first();
+        return view('health_units.show', compact('health_unit'));
     }
 
     /**
@@ -48,15 +49,17 @@ class HealthUnitController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $health_unit = HealthUnit::where('id', $id)->first();
+        return view('health_units.edit', compact('health_unit'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreUpdateHealthUnitRequest $request, HealthUnit $health_unit)
     {
-        //
+        $health_unit->update($request->validated());
+        return redirect()->route('health_units.index')->with('success', 'Unidade atualizada com sucesso!');
     }
 
     /**

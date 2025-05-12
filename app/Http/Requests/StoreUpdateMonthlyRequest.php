@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Contract;
 use App\Models\Monthly;
+use Illuminate\Validation\Rule;
 
 class StoreUpdateMonthlyRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class StoreUpdateMonthlyRequest extends FormRequest
     {
         return [
             'contract_id' => ['required', 'exists:'.Contract::class.',id'],
-            'name' => ['required', 'string', 'max:255', 'unique:'.Monthly::class],
+            'name' => ['required', 'string', 'max:255', Rule::unique(Monthly::class)->ignore($this->monthly)],
             'tipo' => ['required', 'string'],
             'escala' => ['required', 'string'],
             'salario_base' => ['required', 'numeric'],

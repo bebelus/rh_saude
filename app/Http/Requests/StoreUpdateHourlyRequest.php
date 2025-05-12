@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Contract;
 use App\Models\Hourly;
+use Illuminate\Validation\Rule;
 
 class StoreUpdateHourlyRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class StoreUpdateHourlyRequest extends FormRequest
     {
         return [
             'contract_id' => ['required', 'exists:'.Contract::class.',id'],
-            'name' => ['required', 'string', 'max:255', 'unique:'.Hourly::class],
+            'name' => ['required', 'string', 'max:255', Rule::unique(Hourly::class)->ignore($this->hourly)],
             'tipo' => ['required', 'string'],
             'horas_totais' => ['required', 'numeric'],
             'horas_mensais' => ['required', 'numeric'],
