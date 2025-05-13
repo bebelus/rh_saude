@@ -1,4 +1,4 @@
-<h1>Novo Contrato</h1>
+<h1>Editando o Contrato número {{ $contract->contract_number }}</h1>
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -8,7 +8,8 @@
         </ul>
     </div>
 @endif
-<form action="{{ route('contracts.store') }}" method="POST">
+<form action="{{ route('contracts.update', $contract) }}" method="POST">
     @csrf
+    @method('PUT')
     @include('contracts.form')
 </form>

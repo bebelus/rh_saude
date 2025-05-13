@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use App\Models\HealthUnit;
 use App\Models\Sector;
 use Illuminate\Validation\Rule;
+use Illuminate\Database\Eloquent\Builder;
 
 
 class StoreUpdateSectorRequest extends FormRequest
@@ -26,9 +27,10 @@ class StoreUpdateSectorRequest extends FormRequest
     public function rules(): array
     {
                 // validar se é uma unidade de saude e se o tipo comporta o tipo do setor
-
+       // $outros_setores = Sector::where('health_unit_id','=', $this->health_unit_id)->get();
         return [
-            'name' => ['required', 'string', 'max:255', Rule::unique(Sector::class)->ignore($this->sector->healhUnit)],
+            'name' => ['required', 'string', 'max:50'],
+            //pesquisar formar do nome ser único por setor e unidade... tentar ->ignore($this->sector)  -  Rule::unique('sector')->where(fn (Builder $query) => $query->where('health_unit_id', $this->health_unit_id))
             'description' => ['required', 'string', 'max:255'],
             'health_unit_id' => ['required', 'exists:'.HealthUnit::class.',id'],
             'type' => ['required', 'string', 'max:255'],

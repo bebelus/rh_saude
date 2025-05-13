@@ -42,7 +42,8 @@ class ContractController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $contract = Contract::where('id', $id)->first();
+        return view('contracts.show', compact('contract'));
     }
 
     /**
@@ -50,15 +51,20 @@ class ContractController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $enterprises = Enterprise::all();
+        $contract = Contract::where('id', $id)->first();
+        return view('contracts.edit', compact('contract', 'enterprises'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreUpdateContractRequest $request, Contract $contract)
     {
-        //
+        $contract->update($request->validated());
+        return redirect()->route('contracts.index')->with('success', 'Contrato atualizado com sucesso!');
+
     }
 
     /**

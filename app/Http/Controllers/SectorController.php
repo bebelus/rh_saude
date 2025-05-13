@@ -42,7 +42,8 @@ class SectorController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $sector = Sector::where('id', $id)->first();
+        return view('sectors.show', compact('sector'));
     }
 
     /**
@@ -50,15 +51,18 @@ class SectorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $health_units = HealthUnit::all();
+        $sector = Sector::where('id', $id)->first();
+        return view('sectors.edit', compact('sector', 'health_units'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreUpdateSectorRequest $request, Sector $sector)
     {
-        //
+        $sector->update($request->validated());
+        return redirect()->route('sectors.index')->with('success', 'Setor atualizado com sucesso!');
     }
 
     /**

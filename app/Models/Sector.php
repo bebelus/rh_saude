@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\HealthUnit;
 use App\Models\Work;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 
 class Sector extends Model
@@ -32,5 +33,13 @@ class Sector extends Model
     {
         return $this->hasMany(Work::class);
     }
+
+        protected function shortDescription(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => strlen($this->description) > 50 ? substr($this->description, 0, 50).'...' : $this->description
+        );
+    }
+
 
 }

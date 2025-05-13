@@ -21,18 +21,18 @@ tfoot { background-color: whitesmoke; }
             <th scope="col">Descrição</th>    
             <th scope="col">Tipo</th>
             <th scope="col">Unidade Pertecente</th>
+            <th scope="col">Ações</th>
         </tr>
     </thead>    
     <tbody>    
         @foreach ($sectors as $sector)
             <tr>    
                 <td>{{ $sector->name }}</td>
-                <td> {{ $sector->description  }}</td>
+                <td> {{ $sector->shortDescription  }}</td>
                 <td>{{ $sector->type }}</td>
                 <td>{{ $sector->healthUnit->name }}</td>
                 <td>    
-                    <a href="" class="btn btn-primary">Editar</a>    
-                    <a href="" class="btn btn-danger">Movimentar</a>    
+                    <a href="sectors/{{ $sector->id }}" class="btn btn-primary">Detalhes</a>    
                 </td>    
             </tr>    
         @endforeach

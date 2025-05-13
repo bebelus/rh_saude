@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Sector;
 use App\Models\Bond;
 use App\Models\Applicant;
+use App\Models\HealthUnit;
+
 
 
 class Work extends Model
@@ -38,5 +40,15 @@ class Work extends Model
     {
         return $this->belongsTo(Applicant::class);
     }
+
+        protected function casts(): array
+    {
+        return [
+            'start_date' => 'date:m/d/Y',
+            'end_date' => 'date:m/d/Y',
+        ];
+    }
+
     
+
 }

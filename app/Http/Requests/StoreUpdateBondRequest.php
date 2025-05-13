@@ -28,12 +28,12 @@ class StoreUpdateBondRequest extends FormRequest
     {
         return [
             'collaborator_id' => ['required', 'exists:'.Collaborator::class.',id'],
-            'monthly_id' => ['required_without:hourly_id','nullable', 'exists:'.Monthly::class.',id'],
-            'hourly_id' => ['required_without:monthly_id','nullable', 'exists:'.Hourly::class.',id'],
+            'monthly_id' => ['required_without:hourly_id','prohibits:hourly_id','nullable', 'exists:'.Monthly::class.',id'],
+            'hourly_id' => ['required_without:monthly_id','prohibits:monthly_id','nullable', 'exists:'.Hourly::class.',id'],
             'applicant_id' => ['required', 'exists:'.Applicant::class.',id'],
             'start_date' => ['required', 'date'],
-            'end_date' => [ 'date'],
-            'hora_vinculo' => ['required', 'numeric'],
+            'end_date' => [ 'date', 'nullable'],
+            'hora_vinculo' => ['required_with:hourly_id', 'nullable','numeric'],
             'status' => ['required', 'string'],
         ];
     }

@@ -51,14 +51,13 @@ class Contract extends Model
         return Attribute::get(fn () => 'R$ ' . number_format($this->teto_mensal, 2, ',', '.'));
     }     
 
-    protected function formattedStartDate(): Attribute{
-        return Attribute::get(fn () => date('d/m/Y', strtotime($this->start_date)));
+protected function casts(): array
+    {
+        return [
+            'birth' => 'date:m/d/Y',
+            'start_date' => 'date:m/d/Y',
+            'end_date' => 'date:m/d/Y',
+        ];
     }
-
-    protected function formattedEndDate(): Attribute{
-        return Attribute::get(fn () => date('d/m/Y', strtotime($this->end_date)));
-    }
-
-
 
 }

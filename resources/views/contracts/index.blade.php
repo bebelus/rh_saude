@@ -19,11 +19,9 @@ tfoot { background-color: whitesmoke; }
     <thead>    
         <tr>    
             <th scope="col">Número</th>
-            <th scope="col">Descrição</th>  
             <th scope="col">Valor Total</th>
             <th scope="col">Teto Mensal</th>
             <th scope="col">Data Inicial</th>  
-            <th scope="col">Data Final</th>
             <th scope="col">Empresa Pertecente</th>
             <th scope="col">Status</th>
             <th scope="col">Ações</th>
@@ -33,15 +31,13 @@ tfoot { background-color: whitesmoke; }
         @foreach ($contracts as $contract)
             <tr>    
                 <td>{{ $contract->contract_number }} </td>
-                <td> {{ $contract->description  }} </td>
                 <td>{{$contract->formattedTotalValue }} </td>
                 <td>{{ $contract->formattedTetoMensal }}</td>
-                <td>{{ $contract->formattedStartDate }}</td>
-                <td>{{ $contract->formattedEndDate }}</td>
+                <td>{{ $contract->start_date->format('d/m/Y') }}</td>
                 <td>{{ $contract->enterprise->razao_social }}</td>
                 <td>{{ $contract->status }}</td>
                 <td>    
-                    <a href="" class="btn btn-primary">Editar</a>    
+                    <a href="contracts/{{ $contract->id }}" class="btn btn-primary">Detalhes</a>    
                     <a href="" class="btn btn-danger">Movimentar</a>    
                 </td>    
             </tr>    

@@ -24,6 +24,7 @@ tfoot { background-color: whitesmoke; }
             <th scope="col">Empresa</th>
             <th scope="col">Unidade</th>
             <th scope="col">Setor</th>
+            <th scope="col">Data início</th>
             <th scope="col">Ações</th>
         </tr>
     </thead>    
@@ -44,9 +45,9 @@ tfoot { background-color: whitesmoke; }
                 @endif
                 <td>{{ $collaborator->sector->healthUnit->name }}</td>
                 <td>{{ $collaborator->sector->name }}</td>
+                <td>{{ $collaborator->start_date->format('d/m/Y') }}</td>
                 <td>    
                     <a href="" class="btn btn-primary">Editar</a>    
-                    <a href="" class="btn btn-danger">Movimentar</a>    
                 </td>    
             </tr>    
         @endforeach
