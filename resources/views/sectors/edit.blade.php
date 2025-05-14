@@ -8,7 +8,7 @@
         </ul>
     </div>
 @endif
-<form action="{{ route('sectors.update', $sector) }}" method="POST">
+<form action="{{ route('sectors.update', $sector->id) }}" method="POST">
     @csrf
     @method('PUT')
     @include('sectors.form')

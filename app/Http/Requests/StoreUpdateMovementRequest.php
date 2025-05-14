@@ -26,6 +26,8 @@ class StoreUpdateMovementRequest extends FormRequest
     {
 
         return [
+            'user_id' => ['required', 'exists:'.User::class.',id'],
+            'collaborator_name' => ['required', 'string', 'min: 10', 'max:255'],
             'name' => ['required', 'string', 'min: 10', 'max:255'],
             'telephone' => ['required', 'string', 'min: 10', 'max:255'],
             'hourly_id' => ['required', 'exists:'.Hourly::class.',id'],

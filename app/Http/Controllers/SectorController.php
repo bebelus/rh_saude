@@ -59,8 +59,9 @@ class SectorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreUpdateSectorRequest $request, Sector $sector)
-    {
+    public function update(StoreUpdateSectorRequest $request, String $sector)
+        {
+        $sector = Sector::where('id', $sector)->first();
         $sector->update($request->validated());
         return redirect()->route('sectors.index')->with('success', 'Setor atualizado com sucesso!');
     }
